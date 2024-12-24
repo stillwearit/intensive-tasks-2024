@@ -31,23 +31,21 @@ public class Task10 {
         inputString = inputString.toLowerCase();
         int leftIndex = 0;
         int rightIndex = inputString.length() - 1;
-        char left = inputString.charAt(leftIndex);
-        char right = inputString.charAt(rightIndex);
 
         if (leftIndex == rightIndex) {
             return false;
         }
 
-
         while (rightIndex > leftIndex) {
+            char left = inputString.charAt(leftIndex);
+            char right = inputString.charAt(rightIndex);
 
             if (!Character.isLetter(left)) {
                 leftIndex++;
             } else if (!Character.isLetter(right)) {
                 rightIndex--;
-            } else if (Character.isLetter(left) && Character.isLetter(right)) {
-                boolean equal = left == right;
-                if (!equal) {
+            } else {
+                if (left != right) {
                     return false;
                 }
             }
