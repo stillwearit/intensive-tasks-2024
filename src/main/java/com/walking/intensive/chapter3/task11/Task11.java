@@ -1,5 +1,6 @@
 package com.walking.intensive.chapter3.task11;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -63,19 +64,28 @@ public class Task11 {
         if (array.length == 0) {
             return 0;
         }
+
         if (!isValid(array)) {
             return -1;
         }
 
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 1; j <= array.length; j += 2) {
+                int[] newArray = Arrays.copyOfRange(array, i, j);
+                for (int n : newArray) {
+                    sum += n;
+                }
+            }
+        }
 
-
-        return 0;
+        return sum;
     }
 
     static boolean isValid(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-           if (array[i] < 0)
-               return false;
+        for (int i : array) {
+            if (i < 0)
+                return false;
         }
         return true;
     }
