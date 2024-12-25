@@ -24,17 +24,13 @@ public class Task10 {
 
     static boolean isPalindrome(String inputString) {
 
-        if (inputString == null || inputString.isEmpty()) {
+        if (inputString == null || inputString.length() <= 1) {
             return false;
         }
 
         inputString = inputString.toLowerCase();
         int leftIndex = 0;
         int rightIndex = inputString.length() - 1;
-
-        if (leftIndex == rightIndex) {
-            return false;
-        }
 
         while (rightIndex > leftIndex) {
             char left = inputString.charAt(leftIndex);
