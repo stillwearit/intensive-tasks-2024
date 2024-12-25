@@ -70,6 +70,18 @@ public class Task11 {
         }
 
         int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+
+        for (int n = 2; n < array.length; n += 2) {
+            for (int i = 0; i < array.length - n; i++) {
+                int[] newArray = Arrays.copyOfRange(array, i, i + n + 1);
+                for (int j : newArray) {
+                    sum += j;
+                }
+            }
+        }
 
         return sum;
     }
