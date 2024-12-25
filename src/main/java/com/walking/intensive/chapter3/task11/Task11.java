@@ -1,5 +1,7 @@
 package com.walking.intensive.chapter3.task11;
 
+import java.util.Scanner;
+
 /**
  * Реализуйте метод getOddSubArraysElementsSum() с учетом условий ниже.
  *
@@ -42,11 +44,39 @@ package com.walking.intensive.chapter3.task11;
  */
 public class Task11 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите числа через пробел: ");
+        String numbers = in.nextLine();
+        in.close();
+
+        String[] arrayNum = numbers.split(" ");
+        int[] arrayOfNumbers = new int[arrayNum.length];
+
+        for (int i = 0; i < arrayOfNumbers.length; i++) {
+            arrayOfNumbers[i] = Integer.parseInt(arrayNum[i]);
+        }
+
+        System.out.println(getOddSubArraysElementsSum(arrayOfNumbers));
     }
 
     static int getOddSubArraysElementsSum(int[] array) {
-        // Ваш код
+        if (array.length == 0) {
+            return 0;
+        }
+        if (!isValid(array)) {
+            return -1;
+        }
+
+
+
         return 0;
+    }
+
+    static boolean isValid(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+           if (array[i] < 0)
+               return false;
+        }
+        return true;
     }
 }
