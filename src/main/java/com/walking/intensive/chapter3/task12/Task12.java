@@ -58,6 +58,9 @@ public class Task12 {
 
         for (int i = 0; i < basketsArray.length; i++) {
             basketsArray[i] = Character.getNumericValue(baskets.charAt(i));
+            if (basketsArray[i] != 0 && basketsArray[i] != 1) {
+                return new int[]{};
+            }
         }
 
         int[] actionsAmount = new int[basketsAmount];
