@@ -55,13 +55,13 @@ public class Task12 {
     static int[] getMovementsNumber(String baskets) {
         int basketsAmount = baskets.length();
         int[] basketsArray = new int[basketsAmount];
+
         for (int i = 0; i < basketsArray.length; i++) {
             basketsArray[i] = Character.getNumericValue(baskets.charAt(i));
         }
 
         int[] actionsAmount = new int[basketsAmount];
         for (int i = 0; i < actionsAmount.length; i++) {
-            actionsAmount[i] = basketsArray[i];
             for (int j = 0; j < i; j++) {
                 actionsAmount[i] += basketsArray[j] * (i - j);
             }
