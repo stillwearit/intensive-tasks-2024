@@ -65,12 +65,12 @@ public class Task12 {
 
         int[] actionsAmount = new int[basketsAmount];
         for (int i = 0; i < actionsAmount.length; i++) {
-            for (int j = 0; j < i; j++) {
-                actionsAmount[i] += basketsArray[j] * (i - j);
+            for (int left = 0; left < i; left++) {
+                actionsAmount[i] += basketsArray[left] * (i - left);
             }
 
-            for (int k = i + 1; k < actionsAmount.length; k++) {
-                actionsAmount[i] += basketsArray[k] * (k - i);
+            for (int right = i + 1; right < actionsAmount.length; right++) {
+                actionsAmount[i] += basketsArray[right] * (right - i);
             }
         }
 
