@@ -92,6 +92,7 @@ public class Task13 {
             }
 
             stepsCount += i * 2 + 1;
+            leftover = wateringCanVolume;
         }
 
         return stepsCount;
