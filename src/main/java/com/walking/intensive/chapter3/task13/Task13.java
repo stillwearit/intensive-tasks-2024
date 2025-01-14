@@ -57,8 +57,9 @@ public class Task13 {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите объём лейки: ");
         int wateringCanVolume = in.nextInt();
-        System.out.println("Введите через пробел количество воды, необходимое для полива каждого растения: ");
+        System.out.print("Введите через пробел количество воды, необходимое для полива каждого растения: ");
         String plantsWatering = in.nextLine();
+        in.close();
 
         String[] plantsWater = plantsWatering.split(" ");
         int[] plants = new int[plantsWater.length];
