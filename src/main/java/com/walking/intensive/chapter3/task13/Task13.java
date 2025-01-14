@@ -55,11 +55,10 @@ public class Task13 {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите объём лейки: ");
-        int wateringCanVolume = in.nextInt();
-
         System.out.println("Введите через пробел количество воды, необходимое для полива каждого растения: ");
         String plantsWatering = in.nextLine();
+        System.out.println("Введите объём лейки: ");
+        int wateringCanVolume = in.nextInt();
         in.close();
 
         String[] plantsWater = plantsWatering.split(" ");
