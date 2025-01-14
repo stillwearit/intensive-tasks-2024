@@ -91,9 +91,9 @@ public class Task13 {
                 leftover -= plants[i];
             } else {
                 stepsCount += i * 2 + 1;
-                leftover = wateringCanVolume;
+                leftover = wateringCanVolume - plants[i];
             }
-            
+
         }
 
         return stepsCount;
