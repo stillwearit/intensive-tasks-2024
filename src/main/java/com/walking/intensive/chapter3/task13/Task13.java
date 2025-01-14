@@ -1,5 +1,9 @@
 package com.walking.intensive.chapter3.task13;
 
+import java.util.Scanner;
+
+import static java.lang.Integer.parseInt;
+
 /**
  * Ваша задача - с помощью лейки полить все растения в саду.
  * Всего в саду N растений. Они расположены в ряд и слева направо помечены
@@ -49,11 +53,31 @@ package com.walking.intensive.chapter3.task13;
  */
 public class Task13 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите объём лейки: ");
+        int wateringCanVolume = in.nextInt();
+        System.out.println("Введите через пробел количество воды, необходимое для полива каждого растения: ");
+        String plantsWatering = in.nextLine();
+
+        String[] plantsWater = plantsWatering.split(" ");
+        int[] plants = new int [plantsWater.length];
+        for (int i = 0; i < plants.length; i++) {
+            plants[i] = parseInt(plantsWater[i]);
+        }
+
+        System.out.println(getStepsCount(plants, wateringCanVolume));
     }
 
     static int getStepsCount(int[] plants, int wateringCanVolume) {
-        // Ваш код
-        return 0;
+        if (plants.length == 0) {
+            return 0;
+        }
+
+        if (wateringCanVolume < 1) {
+            return -1;
+        }
+
+
     }
 }
