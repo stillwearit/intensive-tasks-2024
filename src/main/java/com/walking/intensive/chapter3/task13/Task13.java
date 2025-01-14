@@ -89,10 +89,11 @@ public class Task13 {
             if (leftover >= plants[i]) {
                 stepsCount += 1;
                 leftover -= plants[i];
+            } else {
+                stepsCount += i * 2 + 1;
+                leftover = wateringCanVolume;
             }
-
-            stepsCount += i * 2 + 1;
-            leftover = wateringCanVolume;
+            
         }
 
         return stepsCount;
