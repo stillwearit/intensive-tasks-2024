@@ -77,7 +77,7 @@ public class Task14 {
     }
 
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
-        // Ваш код
+        
         return new int[0];
     }
 }
