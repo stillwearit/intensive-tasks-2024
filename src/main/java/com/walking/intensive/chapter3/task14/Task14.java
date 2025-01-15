@@ -53,13 +53,27 @@ public class Task14 {
         int objects = in.nextInt();
         int[][] objectsLocation = new int[objects][];
 
-        for (int i = 0; i <= objectsLocation.length; i++) {
+        for (int i = 0; i < objectsLocation.length; i++) {
             System.out.printf("Введите через пробел координаты %d объекта: ", i + 1);
             String coordinates = in.nextLine();
             String[] coordinates1 = coordinates.split(" ");
-            objectsLocation[i] = parseInt(coordinates1);
+            int[] coordinates2 = new int[] {parseInt(coordinates1[0]), parseInt(coordinates1[1])};
+            objectsLocation[i] = coordinates2;
         }
 
+        System.out.println("Введите количество радаров: ");
+        int radarsAmount = in.nextInt();
+        int[][] radars = new int[radarsAmount][];
+
+        for (int i = 0; i < radars.length; i++) {
+            System.out.printf("Введите через пробел координаты и радиус %d радара: ", i + 1);
+            String coordinates = in.nextLine();
+            String[] data = coordinates.split(" ");
+            int[] radarsData = new int[]{parseInt(data[0]), parseInt(data[1]), parseInt(data[2])};
+            radars[i] = radarsData;
+        }
+
+        System.out.println(Arrays.toString(getObjectCounts(objectsLocation, radars)));
     }
 
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
