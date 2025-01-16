@@ -1,9 +1,7 @@
 package com.walking.intensive.chapter3.task14;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-import static java.lang.Integer.parseInt;
 
 /**
  * Необходимо разработать программу, которая определяет количество объектов на радарах.
@@ -48,52 +46,31 @@ import static java.lang.Integer.parseInt;
  */
 public class Task14 {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введите количество объектов: ");
-        int objects = in.nextInt();
-        int[][] objectsLocation = new int[objects][];
-
-        for (int i = 0; i < objectsLocation.length; i++) {
-            System.out.printf("Введите через пробел координаты %d объекта: ", i + 1);
-            String coordinates = in.nextLine();
-            String[] coordinates1 = coordinates.split(" ");
-            int[] coordinates2 = new int[]{parseInt(coordinates1[0]), parseInt(coordinates1[1])};
-            objectsLocation[i] = coordinates2;
-        }
-
-        System.out.println("Введите количество радаров: ");
-        int radarsAmount = in.nextInt();
-        int[][] radars = new int[radarsAmount][];
-
-        for (int i = 0; i < radars.length; i++) {
-            System.out.printf("Введите через пробел координаты и радиус %d радара: ", i + 1);
-            String coordinates = in.nextLine();
-            String[] data = coordinates.split(" ");
-            int[] radarsData = new int[]{parseInt(data[0]), parseInt(data[1]), parseInt(data[2])};
-            radars[i] = radarsData;
-        }
+        int[][] radars = {{2, 3, 1}, {4, 3, 1}, {1, 1, 2}};
+        int[][] objectsLocation = {{1, 3}, {3, 3}, {5, 3}, {2, 2}};
 
         System.out.println(Arrays.toString(getObjectCounts(objectsLocation, radars)));
     }
 
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
-        int object = 0;
         int[] objectCounts = new int[radars.length];
         for (int i = 0; i < radars.length; i++) {
-            if (radars[i][3] < 1) {
+            int object = 0;
+            if (radars[i][2] < 1) {
                 return new int[0];
             }
 
             for (int j = 0; j < objectLocations.length; j++) {
-                int side1 = objectLocations[j][1] - radars[i][1];
-                int side2 = objectLocations[j][2] - radars[i][2];
-                int objectDistance = (int) Math.sqrt(Math.pow(side1, 2) + Math.pow(side2, 2));
-                if (objectDistance <= radars[i][3]) {
+                int side1 = objectLocations[j][0] - radars[i][0];
+                int side2 = objectLocations[j][1] - radars[i][1];
+                double objectDistance = Math.sqrt(Math.pow(side1, 2) + Math.pow(side2, 2));
+                if (objectDistance <= radars[i][2]) {
                     object += 1;
                 }
             }
 
             objectCounts[i] = object;
+            object = 0;
 
         }
 
