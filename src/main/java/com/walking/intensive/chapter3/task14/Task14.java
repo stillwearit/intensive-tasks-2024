@@ -56,11 +56,14 @@ public class Task14 {
         int[] objectCounts = new int[radars.length];
         for (int i = 0; i < radars.length; i++) {
             int object = 0;
-            if (radars[i][2] < 1) {
+            if (radars[i][2] < 1 || radars[i].length != 3) {
                 return new int[0];
             }
 
             for (int j = 0; j < objectLocations.length; j++) {
+                if (objectLocations[j].length != 2) {
+                    return new int[0];
+                }
                 int side1 = objectLocations[j][0] - radars[i][0];
                 int side2 = objectLocations[j][1] - radars[i][1];
                 double objectDistance = Math.sqrt(Math.pow(side1, 2) + Math.pow(side2, 2));
