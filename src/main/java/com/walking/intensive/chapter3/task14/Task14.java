@@ -73,7 +73,6 @@ public class Task14 {
             }
 
             objectCounts[i] = object;
-            object = 0;
 
         }
 
