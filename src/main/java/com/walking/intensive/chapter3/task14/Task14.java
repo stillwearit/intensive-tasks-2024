@@ -56,7 +56,7 @@ public class Task14 {
         int[] objectCounts = new int[radars.length];
         for (int i = 0; i < radars.length; i++) {
             int object = 0;
-            if (radars[i][2] < 1 || radars[i].length != 3) {
+            if (radars[i].length != 3 || radars[i][2] < 1) {
                 return new int[0];
             }
 
