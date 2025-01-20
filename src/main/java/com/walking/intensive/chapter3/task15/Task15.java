@@ -41,13 +41,16 @@ package com.walking.intensive.chapter3.task15;
 public class Task15 {
     public static void main(String[] args) {
 
-
         int[][] biggerCity = {{0, 5, 3, 4}, {1, 2, 4, 2}, {3, 3, 5, 6}, {2, 4, 1, 3}};
         System.out.println(getMaxFloors(biggerCity));
     }
 
     static int getMaxFloors(int[][] city) {
         int maxFloors = 0;
+
+        if (!isValid(city)) {
+            return -1;
+        }
 
         int[][] biggestBuildings = new int[2][];
         biggestBuildings[0] = new int[city.length];
@@ -82,6 +85,25 @@ public class Task15 {
         }
 
         return maxFloors;
+    }
+
+    static boolean isValid(int[][] city) {
+        if (city.length < 1) {
+            return false;
+        }
+
+        for (int[] i : city) {
+            if (i.length != city.length) {
+                return false;
+            }
+            for (int j : i) {
+                if (j < 0) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 }
