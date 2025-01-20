@@ -40,8 +40,7 @@ package com.walking.intensive.chapter3.task15;
  */
 public class Task15 {
     public static void main(String[] args) {
-        int[][] city = {{2, 1}, {1, 3}};
-        System.out.println(getMaxFloors(city));
+
 
         int[][] biggerCity = {{0, 5, 3, 4}, {1, 2, 4, 2}, {3, 3, 5, 6}, {2, 4, 1, 3}};
         System.out.println(getMaxFloors(biggerCity));
@@ -72,12 +71,12 @@ public class Task15 {
 
         for (int r = 0; r < city.length; r++) {
             for (int c = 0; c < city.length; c++) {
-                if (city[r][c] >= biggestBuildings[0][c] || city[r][c] >= biggestBuildings[1][r]) {
+                if (city[r][c] == biggestBuildings[0][r] || city[r][c] == biggestBuildings[1][c]) {
                     maxFloors += 0;
-                } else if (biggestBuildings[0][c] < biggestBuildings[1][r]) {
-                    maxFloors += biggestBuildings[0][c] - city[r][c];
+                } else if (biggestBuildings[0][r] < biggestBuildings[1][c]) {
+                    maxFloors += biggestBuildings[0][r] - city[r][c];
                 } else {
-                    maxFloors += biggestBuildings[1][r] - city[r][c];
+                    maxFloors += biggestBuildings[1][c] - city[r][c];
                 }
             }
         }
