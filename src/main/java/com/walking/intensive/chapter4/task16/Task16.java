@@ -30,14 +30,15 @@ public class Task16 {
 
 
         System.out.println(isEquals(arr3, arr5));
-        System.out.println(isEquals(arr1, arr2));
         System.out.println(Arrays.toString(incrementEach(arr1)));
         System.out.println(Arrays.toString(multiplyEach(arr1, arr3)));
+        System.out.println(Arrays.toString(subtractEach(arr1, arr3)));
     }
 
     static boolean isEqualSize(int[] arr1, int[] arr2) {
         return arr1.length != 0 && arr1.length == arr2.length;
     }
+
 
     static boolean isEquals(int[] arr1, int[] arr2) {
         if (arr1.length != arr2.length) {
@@ -49,9 +50,9 @@ public class Task16 {
                 return false;
             }
         }
-
         return true;
     }
+
 
     static int[] incrementEach(int[] arr) {
         if (arr.length == 0) {
@@ -62,7 +63,6 @@ public class Task16 {
         for (int i = 0; i < arr.length; i++) {
             newArr[i] = arr[i] + 1;
         }
-
         return newArr;
     }
 
@@ -72,42 +72,46 @@ public class Task16 {
             return new int[]{};
         }
 
-        int[] multiply;
+        int[] result;
         if (arr1.length >= arr2.length) {
-            multiply = new int[arr1.length];
+            result = new int[arr1.length];
         } else {
-            multiply = new int[arr2.length];
+            result = new int[arr2.length];
         }
 
-        for (int i = 0; i < multiply.length; i++) {
+        for (int i = 0; i < result.length; i++) {
             if (i >= arr1.length || i >= arr2.length) {
-                multiply[i] = 0;
+                result[i] = 0;
             } else {
-                multiply[i] = arr1[i] * arr2[i];
+                result[i] = arr1[i] * arr2[i];
             }
         }
-
-        return multiply;
+        return result;
     }
 
-    /**
-     * Реализуйте метод, который принимает параметрами два массива целых чисел: arr1 и arr2.
-     * И возвращает массив, в котором каждый result[i] - разность arr1[i] и arr2[i].
-     *
-     * <p>Если массивы разной длины - недостающие значения более короткого
-     * массива необходимо считать как 0.
-     *
-     * <p>В случае с двумя пустыми массивами необходимо вернуть пустой массив.
-     *
-     * <p>Пример:
-     *
-     * <p>Входные данные: [2,3,6], [4,5,4]
-     *
-     * <p>Возвращаемое значение: [-2,-2,2]
-     */
+
     static int[] subtractEach(int[] arr1, int[] arr2) {
-        // Ваш код
-        return null;
+        if (arr1.length == 0 && arr2.length == 0) {
+            return new int[]{};
+        }
+
+        int[] result;
+        if (arr1.length >= arr2.length) {
+            result = new int[arr1.length];
+        } else {
+            result = new int[arr2.length];
+        }
+
+        for (int i = 0; i < result.length; i++) {
+            if (i >= arr1.length) {
+                result[i] = -arr2[i];
+            } else if (i >= arr2.length) {
+                result[i] = arr1[i];
+            } else {
+                result[i] = arr1[i] - arr2[i];
+            }
+        }
+        return result;
     }
 
     /**
