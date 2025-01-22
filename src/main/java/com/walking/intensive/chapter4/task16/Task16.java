@@ -26,12 +26,13 @@ public class Task16 {
         int[] arr2 = new int[]{1, 2, 3, 4, 5};
         int[] arr3 = new int[]{3, 4, 5};
         int[] arr4 = new int[]{};
-        int[] arr5 = new int[]{3, 4, 6};
+        int[] arr5 = new int[]{3, 4, 4, 6};
 
         System.out.println(Arrays.toString(incrementEach(arr1)));
         System.out.println(Arrays.toString(reverse(arr1)));
         System.out.println(Arrays.toString(add(arr1, 5, 22)));
         System.out.println(isContains(arr4, 6));
+        System.out.println(getFirstIndex(arr5, 2));
 
     }
 
@@ -159,29 +160,14 @@ static boolean isContains(int[] arr, int value) {
     return false;
 }
 
-/**
- * Реализуйте метод, который принимает параметрами массив целых чисел и искомое целое число.
- * И возвращает минимальный индекс, на котором найдет данное число в массиве.
- *
- * <p>Если в массиве нет искомого элемента - метод должен вернуть -1.
- *
- * <p>Пример 1:
- *
- * <ul>
- * <li>Входные данные: [10,20,30,40,50,20,60], 20
- * <li>Возвращаемое значение: 1
- * </ul>
- *
- * <p>Пример 2:
- *
- * <ul>
- * <li>Входные данные: [10,30,40,50,60], 20
- * <li>Возвращаемое значение: -1
- * </ul>
- */
+
 static int getFirstIndex(int[] arr, int value) {
-    // Ваш код
-    return 0;
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] == value) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 /**
