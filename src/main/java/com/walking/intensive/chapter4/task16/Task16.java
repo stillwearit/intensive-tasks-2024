@@ -33,6 +33,7 @@ public class Task16 {
         System.out.println(Arrays.toString(add(arr1, 5, 22)));
         System.out.println(isContains(arr4, 6));
         System.out.println(getFirstIndex(arr5, 2));
+        System.out.println(getLastIndex(arr5, 4));
 
     }
 
@@ -170,29 +171,14 @@ static int getFirstIndex(int[] arr, int value) {
     return -1;
 }
 
-/**
- * Реализуйте метод, который принимает параметрами массив целых чисел и искомое целое число.
- * И возвращает максимальный индекс, на котором найдет данное число в массиве.
- *
- * <p>Если в массиве нет искомого элемента - метод должен вернуть -1.
- *
- * <p>Пример 1:
- *
- * <ul>
- * <li>Входные данные: [10,20,30,40,50,20,60], 20
- * <li>Возвращаемое значение: 5
- * </ul>
- *
- * <p>Пример 2:
- *
- * <ul>
- * <li>Входные данные: [10,30,40,50,60], 20
- * <li>Возвращаемое значение: -1
- * </ul>
- */
+
 static int getLastIndex(int[] arr, int value) {
-    // Ваш код
-    return 0;
+    for (int i = arr.length - 1; i >= 0; i--) {
+        if (arr[i] == value) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 /**
