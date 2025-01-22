@@ -20,29 +20,33 @@ package com.walking.intensive.chapter4.task16;
  */
 public class Task16 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+        int[] arr1 = new int[]{1, 2, 3, 4, 5};
+        int[] arr2 = new int[]{1, 2, 3, 4, 5};
+        int[] arr3 = new int[]{3, 4, 5};
+        int[] arr4 = new int[]{};
+        int[] arr5 = new int[]{3, 4, 6};
+
+
+        System.out.println(isEquals(arr3, arr5));
+        System.out.println(isEquals(arr1, arr2));
     }
 
-    /**
-     * Реализуйте метод, который будет возвращать true,
-     * если массивы не пустые и имеют одинаковую длину.
-     * В остальных случаях - false.
-     */
     static boolean isEqualSize(int[] arr1, int[] arr2) {
-        // Ваш код
-        return false;
+        return arr1.length != 0 && arr1.length == arr2.length;
     }
 
-    /**
-     * Реализуйте метод, который будет возвращать true,
-     * если массивы полностью идентичны по составу.
-     * В остальных случаях - false.
-     *
-     * <p>Идентичными считаются массивы одинаковой длины, для которых arr1[i] == arr2[i] для любого i.
-     */
     static boolean isEquals(int[] arr1, int[] arr2) {
-        // Ваш код
-        return false;
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -58,8 +62,16 @@ public class Task16 {
      * <p>Возвращаемое значение: [11,21,31,41,51,21,61]
      */
     static int[] incrementEach(int[] arr) {
-        // Ваш код
-        return null;
+        if (arr.length == 0) {
+            return new int[]{};
+        }
+
+        int[] newArr = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i] + 1;
+        }
+
+        return newArr;
     }
 
     /**
