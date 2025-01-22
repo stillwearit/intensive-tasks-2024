@@ -32,6 +32,7 @@ public class Task16 {
         System.out.println(isEquals(arr3, arr5));
         System.out.println(isEquals(arr1, arr2));
         System.out.println(Arrays.toString(incrementEach(arr1)));
+        System.out.println(Arrays.toString(multiplyEach(arr1, arr3)));
     }
 
     static boolean isEqualSize(int[] arr1, int[] arr2) {
@@ -52,18 +53,6 @@ public class Task16 {
         return true;
     }
 
-    /**
-     * Реализуйте метод, который принимает параметром массив целых чисел.
-     * И возвращает массив, в котором каждый элемент исходного увеличен на единицу.
-     *
-     * <p>Для пустого массива должен быть возвращен пустой массив.
-     *
-     * <p>Пример:
-     *
-     * <p>Входные данные: [10,20,30,40,50,20,60]
-     *
-     * <p>Возвращаемое значение: [11,21,31,41,51,21,61]
-     */
     static int[] incrementEach(int[] arr) {
         if (arr.length == 0) {
             return new int[]{};
@@ -77,24 +66,28 @@ public class Task16 {
         return newArr;
     }
 
-    /**
-     * Реализуйте метод, который принимает параметрами два массива целых чисел: arr1 и arr2.
-     * И возвращает массив, в котором каждый result[i] - произведение arr1[i] и arr2[i].
-     *
-     * <p>Если массивы разной длины - недостающие значения более короткого
-     * массива необходимо считать как 0.
-     *
-     * <p>В случае с двумя пустыми массивами необходимо вернуть пустой массив.
-     *
-     * <p>Пример:
-     *
-     * <p>Входные данные: [2,3,4], [4,5,6]
-     *
-     * <p>Возвращаемое значение: [8,15,24]
-     */
+
     static int[] multiplyEach(int[] arr1, int[] arr2) {
-        // Ваш код
-        return null;
+        if (arr1.length == 0 && arr2.length == 0) {
+            return new int[]{};
+        }
+
+        int[] multiply;
+        if (arr1.length >= arr2.length) {
+            multiply = new int[arr1.length];
+        } else {
+            multiply = new int[arr2.length];
+        }
+
+        for (int i = 0; i < multiply.length; i++) {
+            if (i >= arr1.length || i >= arr2.length) {
+                multiply[i] = 0;
+            } else {
+                multiply[i] = arr1[i] * arr2[i];
+            }
+        }
+
+        return multiply;
     }
 
     /**
