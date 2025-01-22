@@ -1,5 +1,7 @@
 package com.walking.intensive.chapter4.task16;
 
+import java.util.Arrays;
+
 /**
  * После завершения интенсива вы достаточно быстро познакомитесь с Java Collection Framework.
  * Это знакомство позволит сильно упростить работу с массивами данных.
@@ -29,6 +31,7 @@ public class Task16 {
 
         System.out.println(isEquals(arr3, arr5));
         System.out.println(isEquals(arr1, arr2));
+        System.out.println(Arrays.toString(incrementEach(arr1)));
     }
 
     static boolean isEqualSize(int[] arr1, int[] arr2) {
