@@ -28,15 +28,13 @@ public class Task16 {
         int[] arr4 = new int[]{};
         int[] arr5 = new int[]{3, 4, 6};
 
-
-        System.out.println(isEquals(arr3, arr5));
         System.out.println(Arrays.toString(incrementEach(arr1)));
-        System.out.println(Arrays.toString(multiplyEach(arr1, arr3)));
-        System.out.println(Arrays.toString(subtractEach(arr1, arr3)));
+        System.out.println(Arrays.toString(reverse(arr1)));
+
     }
 
     static boolean isEqualSize(int[] arr1, int[] arr2) {
-        return arr1.length != 0 && arr1.length == arr2.length;
+        return !isEmpty(arr1) && arr1.length == arr2.length;
     }
 
 
@@ -55,7 +53,7 @@ public class Task16 {
 
 
     static int[] incrementEach(int[] arr) {
-        if (arr.length == 0) {
+        if (isEmpty(arr)) {
             return new int[]{};
         }
 
@@ -68,7 +66,7 @@ public class Task16 {
 
 
     static int[] multiplyEach(int[] arr1, int[] arr2) {
-        if (arr1.length == 0 && arr2.length == 0) {
+        if (isEmpty(arr1) && isEmpty(arr2)) {
             return new int[]{};
         }
 
@@ -91,7 +89,7 @@ public class Task16 {
 
 
     static int[] subtractEach(int[] arr1, int[] arr2) {
-        if (arr1.length == 0 && arr2.length == 0) {
+        if (isEmpty(arr1) && isEmpty(arr2)) {
             return new int[]{};
         }
 
@@ -114,21 +112,21 @@ public class Task16 {
         return result;
     }
 
-    /**
-     * Реализуйте метод, который принимает параметром массив целых чисел.
-     * И возвращает массив, развернутый в обратном порядке.
-     *
-     * <p>Для пустого массива должен быть возвращен пустой массив.
-     *
-     * <p>Пример:
-     *
-     * <p>Входные данные: [2,3,4],
-     *
-     * <p>Возвращаемое значение: [4,3,2]
-     */
+
     static int[] reverse(int[] arr) {
-        // Ваш код
-        return null;
+        if (isEmpty(arr)) {
+            return new int[]{};
+        }
+
+        int[] reverse = new int[arr.length];
+        int index = arr.length - 1;
+        int index2 = 0;
+        while (index >= 0 && index2 < arr.length) {
+            reverse[index2] = arr[index];
+            index--;
+            index2++;
+        }
+        return reverse;
     }
 
     /**
@@ -268,5 +266,9 @@ public class Task16 {
     static int[] shiftIndex(int[] arr) {
         // Ваш код
         return null;
+    }
+
+    static boolean isEmpty(int[] arr) {
+        return arr.length == 0;
     }
 }
