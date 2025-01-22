@@ -184,7 +184,7 @@ public class Task16 {
 
 
     static int[] removeByIndex(int[] arr, int index) {
-        if (index < 0) {
+        if (index < 0 || isEmpty(arr)) {
             return new int[]{};
         }
 
