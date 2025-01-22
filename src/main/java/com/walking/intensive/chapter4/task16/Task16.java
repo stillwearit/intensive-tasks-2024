@@ -34,6 +34,7 @@ public class Task16 {
         System.out.println(isContains(arr4, 6));
         System.out.println(getFirstIndex(arr5, 2));
         System.out.println(getLastIndex(arr5, 4));
+        System.out.println(Arrays.toString(removeByIndex(arr1, 2)));
 
     }
 
@@ -149,99 +150,99 @@ public class Task16 {
         }
         newArr[newArr.length - 1] = newValue;
         return newArr;
-}
-
-
-static boolean isContains(int[] arr, int value) {
-    for (int number : arr) {
-        if (number == value) {
-            return true;
-        }
     }
-    return false;
-}
 
 
-static int getFirstIndex(int[] arr, int value) {
-    for (int i = 0; i < arr.length; i++) {
-        if (arr[i] == value) {
-            return i;
+    static boolean isContains(int[] arr, int value) {
+        for (int number : arr) {
+            if (number == value) {
+                return true;
+            }
         }
+        return false;
     }
-    return -1;
-}
 
 
-static int getLastIndex(int[] arr, int value) {
-    for (int i = arr.length - 1; i >= 0; i--) {
-        if (arr[i] == value) {
-            return i;
+    static int getFirstIndex(int[] arr, int value) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == value) {
+                return i;
+            }
         }
+        return -1;
     }
-    return -1;
-}
 
-/**
- * Реализуйте метод, который принимает параметрами массив целых чисел и целое число - индекс.
- * И возвращает массив без значения по указанному индексу. Другие значения должны быть сдвинуты влево.
- *
- * <p>Если указанный индекс выходит за пределы массива - метод должен вернуть копию исходного массива.
- * Если индекс некорректный - метод должен вернуть пустой массив.
- *
- * <p>Пример:
- *
- * <p>Входные данные: [10,20,30,40,50,20,60], 2
- * <p>Возвращаемое значение: [10,20,40,50,20,60]
- */
-static int[] removeByIndex(int[] arr, int index) {
-    // Ваш код
-    return null;
-}
 
-/**
- * Реализуйте метод, который принимает параметрами массив целых чисел и
- * еще один массив целых чисел (в виде varargs).
- * И возвращает первый массив, удалив из него все числа, которые есть во втором.
- *
- * <p>Пример:
- *
- * <p>Входные данные: [10,20,30,40,50,20,60], [20,23,30]
- * <p>Возвращаемое значение: [10,40,50,60]
- */
-static int[] removeAll(int[] arr, int... removingValues) {
-    // Ваш код
-    return null;
-}
+    static int getLastIndex(int[] arr, int value) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-/**
- * Реализуйте метод, который будет возвращать true,
- * если все числа из первого массива присутствуют во втором
- * и все числа из второго массива присутствуют в первом.
- * При этом индексы элементов могут не совпадать.
- */
-static boolean isSimilar(int[] arr1, int[] arr2) {
-    // Ваш код
-    return false;
-}
 
-/**
- * Реализуйте метод, который принимает параметром массив целых чисел.
- * И возвращает массив, сдвинув все элементы входящего массива на следующий индекс.
- * При этом последний элемент будет перенесен на нулевой индекс.
- *
- * <p> Для пустого массива должен быть возвращен пустой массив.
- *
- * <p>Пример:
- *
- * <p>Входные данные: [1,2,3,4]
- * <p>Возвращаемое значение: [4,1,2,3]
- */
-static int[] shiftIndex(int[] arr) {
-    // Ваш код
-    return null;
-}
+    static int[] removeByIndex(int[] arr, int index) {
+        if (index < 0) {
+            return new int[]{};
+        }
 
-static boolean isEmpty(int[] arr) {
-    return arr.length == 0;
-}
+        int[] newArr = new int[arr.length - 1];
+        for (int i = 0; i < newArr.length; i++) {
+            if (i < index) {
+                newArr[i] = arr[i];
+            } else {
+                newArr[i] = arr[i + 1];
+            }
+        }
+        return newArr;
+    }
+
+    /**
+     * Реализуйте метод, который принимает параметрами массив целых чисел и
+     * еще один массив целых чисел (в виде varargs).
+     * И возвращает первый массив, удалив из него все числа, которые есть во втором.
+     *
+     * <p>Пример:
+     *
+     * <p>Входные данные: [10,20,30,40,50,20,60], [20,23,30]
+     * <p>Возвращаемое значение: [10,40,50,60]
+     */
+    static int[] removeAll(int[] arr, int... removingValues) {
+        // Ваш код
+        return null;
+    }
+
+    /**
+     * Реализуйте метод, который будет возвращать true,
+     * если все числа из первого массива присутствуют во втором
+     * и все числа из второго массива присутствуют в первом.
+     * При этом индексы элементов могут не совпадать.
+     */
+    static boolean isSimilar(int[] arr1, int[] arr2) {
+        // Ваш код
+        return false;
+    }
+
+    /**
+     * Реализуйте метод, который принимает параметром массив целых чисел.
+     * И возвращает массив, сдвинув все элементы входящего массива на следующий индекс.
+     * При этом последний элемент будет перенесен на нулевой индекс.
+     *
+     * <p> Для пустого массива должен быть возвращен пустой массив.
+     *
+     * <p>Пример:
+     *
+     * <p>Входные данные: [1,2,3,4]
+     * <p>Возвращаемое значение: [4,1,2,3]
+     */
+    static int[] shiftIndex(int[] arr) {
+        // Ваш код
+        return null;
+    }
+
+    static boolean isEmpty(int[] arr) {
+        return arr.length == 0;
+    }
 }
