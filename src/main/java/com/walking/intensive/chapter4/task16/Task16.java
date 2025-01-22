@@ -31,6 +31,7 @@ public class Task16 {
         System.out.println(Arrays.toString(incrementEach(arr1)));
         System.out.println(Arrays.toString(reverse(arr1)));
         System.out.println(Arrays.toString(add(arr1, 5, 22)));
+        System.out.println(isContains(arr4, 6));
 
     }
 
@@ -148,13 +149,13 @@ public class Task16 {
         return newArr;
 }
 
-/**
- * Реализуйте метод, который будет возвращать true,
- * если переданный параметром массив содержит указанное число.
- * В остальных случаях - false.
- */
+
 static boolean isContains(int[] arr, int value) {
-    // Ваш код
+    for (int number : arr) {
+        if (number == value) {
+            return true;
+        }
+    }
     return false;
 }
 
