@@ -223,12 +223,7 @@ public class Task16 {
         return newArr;
     }
 
-    /**
-     * Реализуйте метод, который будет возвращать true,
-     * если все числа из первого массива присутствуют во втором
-     * и все числа из второго массива присутствуют в первом.
-     * При этом индексы элементов могут не совпадать.
-     */
+
     static boolean isSimilar(int[] arr1, int[] arr2) {
         if (isEmpty(arr1) || isEmpty(arr2)) {
             return false;
@@ -262,8 +257,17 @@ public class Task16 {
      * <p>Возвращаемое значение: [4,1,2,3]
      */
     static int[] shiftIndex(int[] arr) {
-        // Ваш код
-        return null;
+        if (isEmpty(arr)) {
+            return arr;
+        }
+
+        int[] newArr = new int[arr.length];
+        newArr[0] = arr[arr.length - 1];
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            newArr[i + 1] = arr[i];
+        }
+        return newArr;
     }
 
 
