@@ -22,13 +22,13 @@ import java.util.Arrays;
  */
 public class Task16 {
     public static void main(String[] args) {
-        int[] arr1 = new int[]{1, 2, 3, 4, 5};
+        int[] arr1 = new int[]{5, 3, 3, 4, 5};
         int[] arr2 = new int[]{1, 4, 3, 2, 5};
         int[] arr3 = new int[]{3, 4, 5};
         int[] arr4 = new int[]{};
         int[] arr5 = new int[]{3, 4, 4, 6};
 
-        System.out.println(isSimilar(arr1, arr2));
+        System.out.println(isSimilar(arr1, arr3));
 
 
     }
@@ -230,15 +230,23 @@ public class Task16 {
      * При этом индексы элементов могут не совпадать.
      */
     static boolean isSimilar(int[] arr1, int[] arr2) {
-        if (isEmpty(arr1) || isEmpty(arr2) || arr1.length != arr2.length) {
+        if (isEmpty(arr1) || isEmpty(arr2)) {
             return false;
         }
 
-        quickSort(arr1, 0, arr1.length - 1);
-        quickSort(arr2, 0, arr2.length - 1);
+        for (int i : arr1) {
+            if (!isContains(arr2, i)) {
+                return false;
+            }
+        }
 
+        for (int i : arr2) {
+            if (!isContains(arr1, i)) {
+                return false;
+            }
+        }
 
-        return isEquals(arr1, arr2);
+        return true;
     }
 
     /**
@@ -256,37 +264,6 @@ public class Task16 {
     static int[] shiftIndex(int[] arr) {
         // Ваш код
         return null;
-    }
-
-    static void quickSort(int[] arr, int low, int high) {
-        if (isEmpty(arr) || low >= high) {
-            return;
-        }
-
-        int middle = low + (high - low) / 2;
-        int base = arr[middle];
-
-        int i = low;
-        int j = high;
-        while (i <= j) {
-            while (arr[i] < base) {
-                i++;
-            }
-            while (arr[j] > base) {
-                j--;
-            }
-
-            if (i <= j) {
-                int swap = arr[i];
-                arr[i] = arr[j];
-                arr[j] = swap;
-                i++;
-                j--;
-            }
-        }
-
-        quickSort(arr, low, j);
-        quickSort(arr, i, high);
     }
 
 
