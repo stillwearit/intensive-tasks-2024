@@ -24,12 +24,13 @@ public class Task16 {
     public static void main(String[] args) {
         int[] arr1 = new int[]{5, 3, 3, 4, 5};
         int[] arr2 = new int[]{1, 4, 3, 2, 5};
-        int[] arr3 = new int[]{3, 4, 5};
+        int[] arr3 = new int[]{1, 2, 3};
         int[] arr4 = new int[]{};
         int[] arr5 = new int[]{3, 4, 4, 6};
 
         System.out.println(isSimilar(arr1, arr3));
-
+        System.out.println(Arrays.toString(shiftIndex(arr1)));
+        System.out.println(Arrays.toString(addSource(arr3, 10, 300)));
 
     }
 
@@ -130,20 +131,28 @@ public class Task16 {
     }
 
 
-    static int[] add(int[] arr, int index, int newValue) {
+    static int[] addSource(int[] arr, int index, int newValue) {
         if (index < 0) {
             return new int[]{};
         }
 
         int[] newArr = new int[arr.length + 1];
-        for (int index2 = 0; index2 < newArr.length; index2++) {
-            if (index2 < index && index2 < arr.length) {
-                newArr[index2] = arr[index2];
+        for (int i = 0; i < newArr.length; i++) {
+
+
+
+            if (i < index && i < arr.length) {
+                newArr[i] = arr[i];
+            } else if (i == index) {
+                newArr[i] = newValue;
             } else {
-                newArr[index2] = arr[index2 - 1];
+                newArr[i] = arr[i - 1];
+            }
+
+            if (index >= arr.length) {
+                newArr[newArr.length - 1] = newValue;
             }
         }
-        newArr[newArr.length - 1] = newValue;
         return newArr;
     }
 
@@ -181,6 +190,9 @@ public class Task16 {
     static int[] removeByIndex(int[] arr, int index) {
         if (index < 0 || isEmpty(arr)) {
             return new int[]{};
+        }
+        if (index >= arr.length) {
+            return arr;
         }
 
         int[] newArr = new int[arr.length - 1];
@@ -244,18 +256,7 @@ public class Task16 {
         return true;
     }
 
-    /**
-     * Реализуйте метод, который принимает параметром массив целых чисел.
-     * И возвращает массив, сдвинув все элементы входящего массива на следующий индекс.
-     * При этом последний элемент будет перенесен на нулевой индекс.
-     *
-     * <p> Для пустого массива должен быть возвращен пустой массив.
-     *
-     * <p>Пример:
-     *
-     * <p>Входные данные: [1,2,3,4]
-     * <p>Возвращаемое значение: [4,1,2,3]
-     */
+
     static int[] shiftIndex(int[] arr) {
         if (isEmpty(arr)) {
             return arr;
