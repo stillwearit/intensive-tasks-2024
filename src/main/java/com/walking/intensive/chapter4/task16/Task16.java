@@ -35,6 +35,7 @@ public class Task16 {
         System.out.println(getFirstIndex(arr5, 2));
         System.out.println(getLastIndex(arr5, 4));
         System.out.println(Arrays.toString(removeByIndex(arr1, 2)));
+        System.out.println(Arrays.toString(removeAll(arr1, 1, 6, 3)));
 
     }
 
@@ -210,8 +211,33 @@ public class Task16 {
      * <p>Возвращаемое значение: [10,40,50,60]
      */
     static int[] removeAll(int[] arr, int... removingValues) {
-        // Ваш код
-        return null;
+        if (removingValues.length == 0) {
+            return arr;
+        }
+
+        int length = arr.length;
+        for (int i : arr) {
+            for (int j : removingValues) {
+                if (i == j) {
+                    length -= 1;
+                    break;
+                }
+            }
+        }
+
+        int[] newArr = new int[length];
+        int add = 0;
+        for (int i = 0; i < length; i++) {
+            for (int j : removingValues) {
+                if (arr[i + add] == j) {
+                    add += 1;
+                }
+                    newArr[i] = arr[i + add];
+                }
+
+
+        }
+        return newArr;
     }
 
     /**
