@@ -23,10 +23,8 @@ import java.util.Arrays;
 public class Task16 {
     public static void main(String[] args) {
         int[] arr1 = new int[]{5, 3, 3, 4, 5};
-        int[] arr2 = new int[]{1, 4, 3, 2, 5};
         int[] arr3 = new int[]{1, 2, 3};
-        int[] arr4 = new int[]{};
-        int[] arr5 = new int[]{3, 4, 4, 6};
+
 
         System.out.println(isSimilar(arr1, arr3));
         System.out.println(Arrays.toString(shiftIndex(arr1)));
