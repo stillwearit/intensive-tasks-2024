@@ -23,19 +23,13 @@ import java.util.Arrays;
 public class Task16 {
     public static void main(String[] args) {
         int[] arr1 = new int[]{1, 2, 3, 4, 5};
-        int[] arr2 = new int[]{1, 2, 3, 4, 5};
+        int[] arr2 = new int[]{1, 4, 3, 2, 5};
         int[] arr3 = new int[]{3, 4, 5};
         int[] arr4 = new int[]{};
         int[] arr5 = new int[]{3, 4, 4, 6};
 
-        System.out.println(Arrays.toString(incrementEach(arr1)));
-        System.out.println(Arrays.toString(reverse(arr1)));
-        System.out.println(Arrays.toString(add(arr1, 5, 22)));
-        System.out.println(isContains(arr4, 6));
-        System.out.println(getFirstIndex(arr5, 2));
-        System.out.println(getLastIndex(arr5, 4));
-        System.out.println(Arrays.toString(removeByIndex(arr1, 2)));
-        System.out.println(Arrays.toString(removeAll(arr1, 1, 6, 3)));
+        System.out.println(isSimilar(arr1, arr2));
+
 
     }
 
@@ -200,18 +194,9 @@ public class Task16 {
         return newArr;
     }
 
-    /**
-     * Реализуйте метод, который принимает параметрами массив целых чисел и
-     * еще один массив целых чисел (в виде varargs).
-     * И возвращает первый массив, удалив из него все числа, которые есть во втором.
-     *
-     * <p>Пример:
-     *
-     * <p>Входные данные: [10,20,30,40,50,20,60], [20,23,30]
-     * <p>Возвращаемое значение: [10,40,50,60]
-     */
+
     static int[] removeAll(int[] arr, int... removingValues) {
-        if (removingValues.length == 0) {
+        if (isEmpty(removingValues)) {
             return arr;
         }
 
@@ -232,10 +217,8 @@ public class Task16 {
                 if (arr[i + add] == j) {
                     add += 1;
                 }
-                    newArr[i] = arr[i + add];
-                }
-
-
+                newArr[i] = arr[i + add];
+            }
         }
         return newArr;
     }
@@ -247,8 +230,15 @@ public class Task16 {
      * При этом индексы элементов могут не совпадать.
      */
     static boolean isSimilar(int[] arr1, int[] arr2) {
-        // Ваш код
-        return false;
+        if (isEmpty(arr1) || isEmpty(arr2) || arr1.length != arr2.length) {
+            return false;
+        }
+
+        quickSort(arr1, 0, arr1.length - 1);
+        quickSort(arr2, 0, arr2.length - 1);
+
+
+        return isEquals(arr1, arr2);
     }
 
     /**
@@ -268,7 +258,41 @@ public class Task16 {
         return null;
     }
 
+    static void quickSort(int[] arr, int low, int high) {
+        if (isEmpty(arr) || low >= high) {
+            return;
+        }
+
+        int middle = low + (high - low) / 2;
+        int base = arr[middle];
+
+        int i = low;
+        int j = high;
+        while (i <= j) {
+            while (arr[i] < base) {
+                i++;
+            }
+            while (arr[j] > base) {
+                j--;
+            }
+
+            if (i <= j) {
+                int swap = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swap;
+                i++;
+                j--;
+            }
+        }
+
+        quickSort(arr, low, j);
+        quickSort(arr, i, high);
+    }
+
+
     static boolean isEmpty(int[] arr) {
         return arr.length == 0;
     }
+
+
 }
