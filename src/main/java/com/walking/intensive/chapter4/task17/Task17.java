@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class Task17 {
     public static void main(String[] args) {
         int[] arr = new int[]{6, 83, 35, 2, 18, 56, 33, 28, 72, 100};
-        System.out.println(Arrays.toString(sortByBubble(arr)));
+        System.out.println(Arrays.toString(sortByQuicksort(arr)));
 
     }
 
@@ -101,8 +101,44 @@ public class Task17 {
      * </ol>
      */
     static int[] sortByQuicksort(int[] array) {
-        // Ваш код
-        return new int[]{};
+        int i = 0;
+        int j = array.length - 1;
+        int baseIndex = (i + j) / 2;
+        int base = array[baseIndex];
+        while (i <= j) {
+            while (array[i] < base) {
+                i++;
+            }
+            while (array[j] > base) {
+                j--;
+            }
+            if (i <= j) {
+                int swap = array[i];
+                array[i] = array[j];
+                array[j] = swap;
+                i++;
+                j--;
+            }
+        }
+
+        int[] arrOne = Arrays.copyOfRange(array, 0, j);
+        int[] arrTwo = Arrays.copyOfRange(array, i, array.length - 1);
+
+        while (arrOne.length > 2) {
+            return sortByQuicksort(arrOne);
+        }
+
+        while (arrTwo.length > 2) {
+            return sortByQuicksort(arrTwo);
+        }
+
+
+        if (array[0] > array[1]) {
+            int swap = array[0];
+            array[0] = array[1];
+            array[1] = swap;
+        }
+        return array;
     }
 
     /**
