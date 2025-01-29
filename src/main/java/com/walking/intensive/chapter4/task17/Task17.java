@@ -101,10 +101,34 @@ public class Task17 {
      * </ol>
      */
     static int[] sortByQuicksort(int[] array) {
+        if (array == null || array.length == 0) {
+            return new int[]{};
+        }
+
+        quickSort(array);
+
+        return array;
+    }
+
+    static void quickSort(int[] array) {
+        if (array.length == 2) {
+            if (array[0] > array[1]) {
+                int swap = array[0];
+                array[0] = array[1];
+                array[1] = swap;
+            }
+            return;
+        }
+
+        if (array.length < 2) {
+            return;
+        }
+
         int i = 0;
         int j = array.length - 1;
         int baseIndex = (i + j) / 2;
         int base = array[baseIndex];
+
         while (i <= j) {
             while (array[i] < base) {
                 i++;
@@ -112,6 +136,7 @@ public class Task17 {
             while (array[j] > base) {
                 j--;
             }
+
             if (i <= j) {
                 int swap = array[i];
                 array[i] = array[j];
@@ -120,25 +145,12 @@ public class Task17 {
                 j--;
             }
         }
-
-        int[] arrOne = Arrays.copyOfRange(array, 0, j);
-        int[] arrTwo = Arrays.copyOfRange(array, i, array.length - 1);
-
-        while (arrOne.length > 2) {
-            return sortByQuicksort(arrOne);
+        if (j > 0) {
+            quickSort(Arrays.copyOfRange(array, 0, j));
         }
-
-        while (arrTwo.length > 2) {
-            return sortByQuicksort(arrTwo);
+        if (i < array.length) {
+            quickSort(Arrays.copyOfRange(array, i, array.length));
         }
-
-
-        if (array[0] > array[1]) {
-            int swap = array[0];
-            array[0] = array[1];
-            array[1] = swap;
-        }
-        return array;
     }
 
     /**
