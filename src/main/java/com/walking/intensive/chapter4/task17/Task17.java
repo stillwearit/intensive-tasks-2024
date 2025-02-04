@@ -26,6 +26,7 @@ public class Task17 {
     public static void main(String[] args) {
 
         System.out.println(getBenchmarkOn1000());
+        System.out.println(getBenchmarkOn10000());
 
     }
 
@@ -97,48 +98,53 @@ public class Task17 {
         }
     }
 
-        /**
-         * Создайте массив случайных целых чисел из 1 000 элементов и сравните время,
-         * которое потребуются для каждой из сортировок.
-         * Ожидаемое возвращаемое значение - разница в выполнении сортировки в миллисекундах.
-         *
-         * <p>Для получения текущего UNIX-времени (в миллисекундах) можно использовать `System.currentTimeMillis()`.
-         * Время выполнения - разность времени после работы алгоритма и времени до работы алгоритма
-         */
-        static long getBenchmarkOn1000 () {
-            Random random = new Random();
-            int[] array = new int[1000];
+    static long getBenchmarkOn1000() {
+        Random random = new Random();
+        int[] array = new int[1000];
 
-            for (int i = 0; i < 1000; i++) {
-                array[i] = random.nextInt(10000);
-            }
-
-            long startTime = System.currentTimeMillis();
-            sortByBubble(array);
-            long middleTime = System.currentTimeMillis();
-            sortByQuicksort(array);
-            long endTime = System.currentTimeMillis();
-
-            long time1 = middleTime - startTime;
-            long time2 = endTime - middleTime;
-
-            if (time1 > time2) {
-                return time1 - time2;
-            }
-            return time2 - time1;
+        for (int i = 0; i < 1000; i++) {
+            array[i] = random.nextInt(10000);
         }
 
-        /**
-         * Повторите предыдущие вычисления из метода getBenchmarkOn1000() для массива в 10 000 элементов.
-         */
-        static long getBenchmarkOn10000 () {
-
-
-            return 0;
+        if (getTimeForBubble(array) < getTimeForQuickSort(array)) {
+            return getTimeForQuickSort(array) - getTimeForBubble(array);
         }
-
-        static boolean isValid ( int[] array){
-            return array != null && array.length != 0;
-        }
-
+        
+        return getTimeForBubble(array) - getTimeForQuickSort(array);
     }
+
+    static long getBenchmarkOn10000() {
+        Random random = new Random();
+        int[] array = new int[10000];
+
+        for (int i = 0; i < 10000; i++) {
+            array[i] = random.nextInt(100000);
+        }
+
+        if (getTimeForBubble(array) < getTimeForQuickSort(array)) {
+            return getTimeForQuickSort(array) - getTimeForBubble(array);
+        }
+
+        return getTimeForBubble(array) - getTimeForQuickSort(array);
+    }
+
+    static boolean isValid(int[] array) {
+        return array != null && array.length != 0;
+    }
+
+    static long getTimeForBubble(int[] array) {
+        long startTime = System.currentTimeMillis();
+        sortByBubble(array);
+        long endTime = System.currentTimeMillis();
+
+        return endTime - startTime;
+    }
+
+    static long getTimeForQuickSort(int[] array) {
+        long startTime = System.currentTimeMillis();
+        sortByQuicksort(array);
+        long endTime = System.currentTimeMillis();
+
+        return endTime - startTime;
+    }
+}
