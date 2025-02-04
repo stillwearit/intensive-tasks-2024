@@ -105,52 +105,46 @@ public class Task17 {
             return new int[]{};
         }
 
-        quickSort(array);
-
-        return array;
+        return sortByQuickSort(array, 0, array.length - 1);
     }
 
-    static void quickSort(int[] array) {
-        if (array.length == 2) {
-            if (array[0] > array[1]) {
-                int swap = array[0];
-                array[0] = array[1];
-                array[1] = swap;
-            }
-            return;
+    static int[] sortByQuickSort(int[] array, int left, int right) {
+        if (right - left <= 1) {
+            return array;
         }
 
-        if (array.length < 2) {
-            return;
-        }
+        int middleIndex = left + (right - left) / 2;
+        int middle = array[middleIndex];
 
-        int i = 0;
-        int j = array.length - 1;
-        int baseIndex = (i + j) / 2;
-        int base = array[baseIndex];
+        int i = left;
+        int j = right;
 
-        while (i <= j) {
-            while (array[i] < base) {
+        while (j > i) {
+            while (array[i] < middle) {
                 i++;
             }
-            while (array[j] > base) {
+            while (array[j] > middle) {
                 j--;
             }
 
-            if (i <= j) {
+            if (j > i) {
                 int swap = array[i];
                 array[i] = array[j];
                 array[j] = swap;
-                i++;
-                j--;
+
+                if (j - i > 1) {
+                    i++;
+                    j--;
+                }
+
             }
         }
-        if (j > 0) {
-            quickSort(Arrays.copyOfRange(array, 0, j));
+
+        if (i > 0) {
+            return sortByQuickSort(array, 0, i);
         }
-        if (i < array.length) {
-            quickSort(Arrays.copyOfRange(array, i, array.length));
-        }
+
+        return sortByQuickSort(array, j, array.length - 1);
     }
 
     /**
