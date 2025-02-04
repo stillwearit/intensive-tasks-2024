@@ -1,6 +1,7 @@
 package com.walking.intensive.chapter4.task17;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Смауг, живущий в пещере с золотом, был заперт внутри горы.
@@ -23,26 +24,12 @@ import java.util.Arrays;
  */
 public class Task17 {
     public static void main(String[] args) {
-        int[] arr = new int[]{6, 83, 35, 2, 18, 56, 33, 28, 72, 100};
-        System.out.println(Arrays.toString(sortByQuicksort(arr)));
+
+        System.out.println(getBenchmarkOn1000());
 
     }
 
-    /**
-     * Сортировка пузырьком:
-     *
-     * <ol>
-     * <li> Метод заключается в попарном сравнении соседних элементов в массиве слева направо.
-     *      Сначала сравнивается 0 и 1 индексы в массиве.
-     *      Если значения элемента с 0-м индексом больше элемента с 1-м индексом -
-     *      элементы меняются местами.
-     * <li> Потом сравниваются 1 и 2 индексы, и так последовательно попарно сравниваются все элементы массива.
-     *      При этом максимальный элемент массива окажется самым правым в массиве.
-     * <li> Далее массивом будем считать неотсортированную часть массива,
-     *      то есть без последнего самого правого элемента.
-     * <li> Повторяем шаги 1 и 2 до полной сортировки массива.
-     * </ol>
-     */
+
     static int[] sortByBubble(int[] array) {
         if (!isValid(array)) {
             return new int[]{};
@@ -110,28 +97,48 @@ public class Task17 {
         }
     }
 
-    /**
-     * Создайте массив случайных целых чисел из 1 000 элементов и сравните время,
-     * которое потребуются для каждой из сортировок.
-     * Ожидаемое возвращаемое значение - разница в выполнении сортировки в миллисекундах.
-     *
-     * <p>Для получения текущего UNIX-времени (в миллисекундах) можно использовать `System.currentTimeMillis()`.
-     * Время выполнения - разность времени после работы алгоритма и времени до работы алгоритма
-     */
-    static long getBenchmarkOn1000() {
-        // Ваш код
-        return 0;
-    }
+        /**
+         * Создайте массив случайных целых чисел из 1 000 элементов и сравните время,
+         * которое потребуются для каждой из сортировок.
+         * Ожидаемое возвращаемое значение - разница в выполнении сортировки в миллисекундах.
+         *
+         * <p>Для получения текущего UNIX-времени (в миллисекундах) можно использовать `System.currentTimeMillis()`.
+         * Время выполнения - разность времени после работы алгоритма и времени до работы алгоритма
+         */
+        static long getBenchmarkOn1000 () {
+            Random random = new Random();
+            int[] array = new int[1000];
 
-    /**
-     * Повторите предыдущие вычисления из метода getBenchmarkOn1000() для массива в 10 000 элементов.
-     */
-    static long getBenchmarkOn10000() {
-        // Ваш код
-        return 0;
-    }
+            for (int i = 0; i < 1000; i++) {
+                array[i] = random.nextInt(10000);
+            }
 
-    static boolean isValid (int[] array) {
-        return array != null && array.length != 0;
+            long startTime = System.currentTimeMillis();
+            sortByBubble(array);
+            long middleTime = System.currentTimeMillis();
+            sortByQuicksort(array);
+            long endTime = System.currentTimeMillis();
+
+            long time1 = middleTime - startTime;
+            long time2 = endTime - middleTime;
+
+            if (time1 > time2) {
+                return time1 - time2;
+            }
+            return time2 - time1;
+        }
+
+        /**
+         * Повторите предыдущие вычисления из метода getBenchmarkOn1000() для массива в 10 000 элементов.
+         */
+        static long getBenchmarkOn10000 () {
+
+
+            return 0;
+        }
+
+        static boolean isValid ( int[] array){
+            return array != null && array.length != 0;
+        }
+
     }
-}
