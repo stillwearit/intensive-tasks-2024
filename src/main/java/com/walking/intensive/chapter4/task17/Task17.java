@@ -44,6 +44,10 @@ public class Task17 {
      * </ol>
      */
     static int[] sortByBubble(int[] array) {
+        if (!isValid(array)) {
+            return new int[]{};
+        }
+
         int high = array.length - 1;
 
         while (high > 0) {
@@ -101,16 +105,17 @@ public class Task17 {
      * </ol>
      */
     static int[] sortByQuicksort(int[] array) {
-        if (array == null || array.length == 0) {
+        if (!isValid(array)) {
             return new int[]{};
         }
 
-        return sortByQuickSort(array, 0, array.length - 1);
+        sortByQuickSort(array, 0, array.length - 1);
+        return array;
     }
 
-    static int[] sortByQuickSort(int[] array, int left, int right) {
+    static void sortByQuickSort(int[] array, int left, int right) {
         if (right - left <= 1) {
-            return array;
+            return;
         }
 
         int middleIndex = left + (right - left) / 2;
@@ -119,7 +124,7 @@ public class Task17 {
         int i = left;
         int j = right;
 
-        while (j > i) {
+        while (j >= i) {
             while (array[i] < middle) {
                 i++;
             }
@@ -127,24 +132,21 @@ public class Task17 {
                 j--;
             }
 
-            if (j > i) {
+            if (j >= i) {
                 int swap = array[i];
                 array[i] = array[j];
                 array[j] = swap;
-
-                if (j - i > 1) {
-                    i++;
-                    j--;
-                }
-
+                i++;
+                j--;
             }
         }
 
-        if (i > 0) {
-            return sortByQuickSort(array, 0, i);
+        if (left < j) {
+            sortByQuickSort(array, left, j);
         }
-
-        return sortByQuickSort(array, j, array.length - 1);
+        if (right > i) {
+            sortByQuickSort(array, i, right);
+        }
     }
 
     /**
@@ -166,5 +168,9 @@ public class Task17 {
     static long getBenchmarkOn10000() {
         // Ваш код
         return 0;
+    }
+
+    static boolean isValid (int[] array) {
+        return array != null && array.length != 0;
     }
 }
