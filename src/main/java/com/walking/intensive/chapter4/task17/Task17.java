@@ -114,7 +114,7 @@ public class Task17 {
     }
 
     static void sortByQuickSort(int[] array, int left, int right) {
-        if (right - left <= 1) {
+        if (left >= right) {
             return;
         }
 
