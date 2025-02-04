@@ -24,10 +24,11 @@ import java.util.Random;
  */
 public class Task17 {
     public static void main(String[] args) {
+        int[] arr = new int[] {80, 55, 77, 32, 18, 99, 24, 5, 42, 65};
+        System.out.println(Arrays.toString(sortByQuicksort(arr)));
 
         System.out.println(getBenchmarkOn1000());
         System.out.println(getBenchmarkOn10000());
-
     }
 
 
@@ -109,7 +110,7 @@ public class Task17 {
         if (getTimeForBubble(array) < getTimeForQuickSort(array)) {
             return getTimeForQuickSort(array) - getTimeForBubble(array);
         }
-        
+
         return getTimeForBubble(array) - getTimeForQuickSort(array);
     }
 
@@ -135,16 +136,14 @@ public class Task17 {
     static long getTimeForBubble(int[] array) {
         long startTime = System.currentTimeMillis();
         sortByBubble(array);
-        long endTime = System.currentTimeMillis();
 
-        return endTime - startTime;
+        return System.currentTimeMillis() - startTime;
     }
 
     static long getTimeForQuickSort(int[] array) {
         long startTime = System.currentTimeMillis();
         sortByQuicksort(array);
-        long endTime = System.currentTimeMillis();
 
-        return endTime - startTime;
+        return System.currentTimeMillis() - startTime;
     }
 }
