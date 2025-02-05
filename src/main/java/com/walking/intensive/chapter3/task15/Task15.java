@@ -52,34 +52,31 @@ public class Task15 {
             return -1;
         }
 
-        int[][] biggestBuildings = new int[2][];
-        biggestBuildings[0] = new int[city.length];
-        biggestBuildings[1] = new int[city.length];
+        int[] biggestInLine = new int[city.length];
+        int[] biggestInColumn = new int[city.length];
 
         for (int i = 0; i < city.length; i++) {
             for (int j = 0; j < city.length; j++) {
-                if (biggestBuildings[0][i] < city[i][j]) {
-                    biggestBuildings[0][i] = city[i][j];
+                if (biggestInLine[i] < city[i][j]) {
+                    biggestInLine[i] = city[i][j];
                 }
             }
         }
 
         for (int i = 0; i < city.length; i++) {
             for (int j = 0; j < city.length; j++) {
-                if (biggestBuildings[1][i] < city[j][i]) {
-                    biggestBuildings[1][i] = city[j][i];
+                if (biggestInColumn[i] < city[j][i]) {
+                    biggestInColumn[i] = city[j][i];
                 }
             }
         }
 
         for (int r = 0; r < city.length; r++) {
             for (int c = 0; c < city.length; c++) {
-                if (city[r][c] == biggestBuildings[0][r] || city[r][c] == biggestBuildings[1][c]) {
-                    maxFloors += 0;
-                } else if (biggestBuildings[0][r] < biggestBuildings[1][c]) {
-                    maxFloors += biggestBuildings[0][r] - city[r][c];
-                } else {
-                    maxFloors += biggestBuildings[1][c] - city[r][c];
+                if (biggestInLine[r] < biggestInColumn[c]) {
+                    maxFloors += biggestInLine[r] - city[r][c];
+                } else if (biggestInColumn[c] < biggestInLine[r]) {
+                    maxFloors += biggestInColumn[c] - city[r][c];
                 }
             }
         }
