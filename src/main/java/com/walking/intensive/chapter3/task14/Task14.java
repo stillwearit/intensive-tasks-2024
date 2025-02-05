@@ -56,12 +56,12 @@ public class Task14 {
         int[] objectCounts = new int[radars.length];
         for (int i = 0; i < radars.length; i++) {
             int object = 0;
-            if (radars[i].length != 3 || radars[i][2] < 1) {
+            if (!isValidRadars(radars[i])) {
                 return new int[0];
             }
 
             for (int j = 0; j < objectLocations.length; j++) {
-                if (objectLocations[j].length != 2) {
+                if (!isValidObjects(objectLocations[j])) {
                     return new int[0];
                 }
                 int side1 = objectLocations[j][0] - radars[i][0];
@@ -73,9 +73,16 @@ public class Task14 {
             }
 
             objectCounts[i] = object;
-
         }
 
         return objectCounts;
+    }
+
+    static boolean isValidRadars(int[] radar) {
+        return radar.length == 3 && radar[2] > 0;
+    }
+
+    static boolean isValidObjects(int[] object) {
+        return object.length == 2;
     }
 }
