@@ -172,13 +172,11 @@ public class Task16 {
             return arr;
         }
 
-        int length = arr.length;
-        for (int i : removingValues) {
-            for (int j : arr) {
-                if (i == j) {
-                    length--;
+        int length = 0;
+        for (int i : arr) {
+            if (!isContains(removingValues, i)) {
+                    length++;
                 }
-            }
         }
 
         int[] newArr = new int[length];
