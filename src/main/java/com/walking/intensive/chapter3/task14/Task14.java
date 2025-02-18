@@ -53,19 +53,24 @@ public class Task14 {
     }
 
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
+        for (int[] radar : radars) {
+            if (!isValidRadars(radar)) {
+                return new int[0];
+            }
+        }
+
+        for (int[] object : objectLocations) {
+            if (!isValidObjects(object)) {
+                return new int[0];
+            }
+        }
+
         int[] objectCounts = new int[radars.length];
         for (int i = 0; i < radars.length; i++) {
             int object = 0;
-            if (!isValidRadars(radars[i])) {
-                return new int[0];
-            }
-
-            for (int j = 0; j < objectLocations.length; j++) {
-                if (!isValidObjects(objectLocations[j])) {
-                    return new int[0];
-                }
-                int side1 = objectLocations[j][0] - radars[i][0];
-                int side2 = objectLocations[j][1] - radars[i][1];
+            for (int[] objectLocation : objectLocations) {
+                int side1 = objectLocation[0] - radars[i][0];
+                int side2 = objectLocation[1] - radars[i][1];
                 double objectDistance = Math.sqrt(Math.pow(side1, 2) + Math.pow(side2, 2));
                 if (objectDistance <= radars[i][2]) {
                     object += 1;
