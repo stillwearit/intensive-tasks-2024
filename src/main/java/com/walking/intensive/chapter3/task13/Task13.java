@@ -79,26 +79,27 @@ public class Task13 {
             return -1;
         }
 
+        for (int plant : plants) {
+            if (!isValid(plant, wateringCanVolume)) {
+                return -1;
+            }
+        }
+
         int stepsCount = 0;
         int leftover = wateringCanVolume;
         for (int i = 0; i < plants.length; i++) {
-            if (!isValid(plants[i], wateringCanVolume)) {
-                return -1;
-            }
-
             if (leftover < plants[i]) {
                 stepsCount += i * 2;
                 leftover = wateringCanVolume - plants[i];
             }
-                stepsCount += 1;
-                leftover -= plants[i];
-
+            stepsCount += 1;
+            leftover -= plants[i];
         }
 
         return stepsCount;
     }
 
-    static boolean isValid (int plant, int wateringCanVolume) {
+    static boolean isValid(int plant, int wateringCanVolume) {
         return plant >= 1 && plant <= wateringCanVolume;
     }
 }
