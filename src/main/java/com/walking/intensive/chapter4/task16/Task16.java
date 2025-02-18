@@ -182,15 +182,16 @@ public class Task16 {
         }
 
         int[] newArr = new int[length];
-        int add = 0;
-        for (int i = 0; i < length; i++) {
-            for (int j : removingValues) {
-                if (arr[i + add] == j) {
-                    add += 1;
+        int i = 0;
+        for (int number : arr) {
+            if (!isContains(removingValues, number)) {
+                newArr[i] = number;
+                if (i < length - 1) {
+                    i++;
                 }
-                newArr[i] = arr[i + add];
             }
         }
+
         return newArr;
     }
 
