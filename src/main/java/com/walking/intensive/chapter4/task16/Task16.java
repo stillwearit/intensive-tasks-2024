@@ -25,17 +25,15 @@ public class Task16 {
         int[] arr1 = new int[]{5, 3, 3, 4, 5};
         int[] arr3 = new int[]{1, 2, 3};
 
-
-        System.out.println(isSimilar(arr1, arr3));
+        System.out.println(Arrays.toString(multiplyEach(arr1, arr3)));
         System.out.println(Arrays.toString(shiftIndex(arr1)));
-        System.out.println(Arrays.toString(addSource(arr3, 10, 300)));
+        System.out.println(Arrays.toString(add(arr3, 10, 300)));
 
     }
 
     static boolean isEqualSize(int[] arr1, int[] arr2) {
         return !isEmpty(arr1) && arr1.length == arr2.length;
     }
-
 
     static boolean isEquals(int[] arr1, int[] arr2) {
         if (arr1.length != arr2.length) {
@@ -50,7 +48,6 @@ public class Task16 {
         return true;
     }
 
-
     static int[] incrementEach(int[] arr) {
         if (isEmpty(arr)) {
             return new int[]{};
@@ -63,42 +60,25 @@ public class Task16 {
         return newArr;
     }
 
-
     static int[] multiplyEach(int[] arr1, int[] arr2) {
         if (isEmpty(arr1) && isEmpty(arr2)) {
             return new int[]{};
         }
 
-        int[] result;
-        if (arr1.length >= arr2.length) {
-            result = new int[arr1.length];
-        } else {
-            result = new int[arr2.length];
+        int[] result = new int[Math.max(arr1.length, arr2.length)];
+        for (int i = 0; i < Math.min(arr1.length, arr2.length); i++) {
+            result[i] = arr1[i] * arr2[i];
         }
 
-        for (int i = 0; i < result.length; i++) {
-            if (i >= arr1.length || i >= arr2.length) {
-                result[i] = 0;
-            } else {
-                result[i] = arr1[i] * arr2[i];
-            }
-        }
         return result;
     }
-
 
     static int[] subtractEach(int[] arr1, int[] arr2) {
         if (isEmpty(arr1) && isEmpty(arr2)) {
             return new int[]{};
         }
 
-        int[] result;
-        if (arr1.length >= arr2.length) {
-            result = new int[arr1.length];
-        } else {
-            result = new int[arr2.length];
-        }
-
+        int[] result = new int[Math.max(arr1.length, arr2.length)];
         for (int i = 0; i < result.length; i++) {
             if (i >= arr1.length) {
                 result[i] = -arr2[i];
@@ -110,7 +90,6 @@ public class Task16 {
         }
         return result;
     }
-
 
     static int[] reverse(int[] arr) {
         if (isEmpty(arr)) {
@@ -128,17 +107,13 @@ public class Task16 {
         return reverse;
     }
 
-
-    static int[] addSource(int[] arr, int index, int newValue) {
+    static int[] add(int[] arr, int index, int newValue) {
         if (index < 0) {
             return new int[]{};
         }
 
         int[] newArr = new int[arr.length + 1];
         for (int i = 0; i < newArr.length; i++) {
-
-
-
             if (i < index && i < arr.length) {
                 newArr[i] = arr[i];
             } else if (i == index) {
@@ -154,7 +129,6 @@ public class Task16 {
         return newArr;
     }
 
-
     static boolean isContains(int[] arr, int value) {
         for (int number : arr) {
             if (number == value) {
@@ -163,7 +137,6 @@ public class Task16 {
         }
         return false;
     }
-
 
     static int getFirstIndex(int[] arr, int value) {
         for (int i = 0; i < arr.length; i++) {
@@ -174,7 +147,6 @@ public class Task16 {
         return -1;
     }
 
-
     static int getLastIndex(int[] arr, int value) {
         for (int i = arr.length - 1; i >= 0; i--) {
             if (arr[i] == value) {
@@ -183,7 +155,6 @@ public class Task16 {
         }
         return -1;
     }
-
 
     static int[] removeByIndex(int[] arr, int index) {
         if (index < 0 || isEmpty(arr)) {
@@ -203,7 +174,6 @@ public class Task16 {
         }
         return newArr;
     }
-
 
     static int[] removeAll(int[] arr, int... removingValues) {
         if (isEmpty(removingValues)) {
@@ -233,7 +203,6 @@ public class Task16 {
         return newArr;
     }
 
-
     static boolean isSimilar(int[] arr1, int[] arr2) {
         if (isEmpty(arr1) || isEmpty(arr2)) {
             return false;
@@ -254,7 +223,6 @@ public class Task16 {
         return true;
     }
 
-
     static int[] shiftIndex(int[] arr) {
         if (isEmpty(arr)) {
             return arr;
@@ -269,10 +237,7 @@ public class Task16 {
         return newArr;
     }
 
-
     static boolean isEmpty(int[] arr) {
         return arr.length == 0;
     }
-
-
 }
