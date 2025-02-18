@@ -97,12 +97,8 @@ public class Task16 {
         }
 
         int[] reverse = new int[arr.length];
-        int index = arr.length - 1;
-        int index2 = 0;
-        while (index >= 0 && index2 < arr.length) {
-            reverse[index2] = arr[index];
-            index--;
-            index2++;
+        for (int i = 0; i < reverse.length; i++) {
+            reverse[i] = arr[arr.length - 1 - i];
         }
         return reverse;
     }
@@ -166,11 +162,7 @@ public class Task16 {
 
         int[] newArr = new int[arr.length - 1];
         for (int i = 0; i < newArr.length; i++) {
-            if (i < index) {
-                newArr[i] = arr[i];
-            } else {
-                newArr[i] = arr[i + 1];
-            }
+            newArr[i] = (i < index) ? arr[i] : arr[i + 1];
         }
         return newArr;
     }
@@ -181,11 +173,10 @@ public class Task16 {
         }
 
         int length = arr.length;
-        for (int i : arr) {
-            for (int j : removingValues) {
+        for (int i : removingValues) {
+            for (int j : arr) {
                 if (i == j) {
-                    length -= 1;
-                    break;
+                    length--;
                 }
             }
         }
